@@ -1,0 +1,29 @@
+{% extends 'renters/base.html' %}
+{% load monthly_cal_with_reservations %}
+
+{% block subtitle %} | {{ renter }} | {{ the_date|date:"F jS Y" }}{% endblock subtitle %}
+
+
+
+{% block dateview %}
+
+
+<div id = "month-view-month-nav">
+  <a href="{% url renter_month renter.username, previous_month.year, previous_month.month %}"><<< {{ previous_month|date:"F Y" }}</a>
+|
+  <a href="{% url renter_month renter.username, next_month.year, next_month.month %}">{{ next_month|date:"F Y" }}>>></a>
+</div>
+
+
+<div id="month-view-month-calendar">
+
+
+
+{% calendar_with_reservations this_month.year this_month.month renter %}
+
+
+</div>
+
+
+{% endblock dateview %}
+

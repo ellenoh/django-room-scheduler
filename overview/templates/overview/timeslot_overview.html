@@ -1,0 +1,26 @@
+{% extends 'overview/base.html' %}
+
+{% block subtitle %} | Overview of Timeslots{% endblock %}
+
+
+{% block content %}
+
+<h2>Pick A Month</h2>
+
+{% if first_days_of_months %}
+
+{% for month in first_days_of_months %}
+
+<p><a href="{% url timeslot_month_detail month.year, month.month %}">{{ month|date:"F Y" }}</a></p>
+
+
+{% endfor %}
+
+{% else %}
+
+<p>You haven't added any timeslots yet.</p>
+
+
+{% endif %}
+
+{% endblock content %}

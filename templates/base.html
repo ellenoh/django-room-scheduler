@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+{% block head %}
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
+
+<title>IBeam Reservation{% block subtitle %}{% endblock subtitle %}</title>
+
+{% block stylesheets %}
+
+<link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/reset.css" />
+<link type="text/css" rel="stylesheet"
+      href="{{ MEDIA_URL }}css/markdown.css" />
+<link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" />
+
+{% endblock stylesheets %}
+
+{% block script %}
+
+
+{% endblock script %}
+
+</head>
+
+{% endblock head %}
+
+<body>
+
+<div id="wrapper">
+
+
+{% block header %}
+<div id="header">
+
+<div id="banner-pic">
+  <a href="{% url renter_landing %}"><img src="{{ MEDIA_URL }}images/ibeam_final_webonly.png"  alt="IBeam Logo" /></a>
+</div>
+
+{% block topnav %}
+<div id="top-right-nav">
+Hello, {{ user }}! |  
+{% if user.is_superuser %}<a href="/overview">Overview</a> | <a href="/admin/">Admin</a> | {% endif %} <a href="/faq/">FAQ</a> | <a href="{% url renter_index user.username %}">Reservations</a> | <a href="{% url renter_account user.username %}">Account</a> | <a href="{% url logout %}">Logout</a>
+</div>
+{% endblock topnav %}
+
+</div><!--End header-->
+{% endblock header %}
+
+{% block overview_nav %}
+
+{% endblock overview_nav %}
+
+
+
+<div id="content" role="main">
+{% block content %}
+
+
+{% block messages %}
+
+{% endblock messages %}
+
+{% block status %}
+{% endblock status %}
+
+
+
+
+{% endblock content %}
+</div> <!--End content-->
+
+{% block footer %}
+<div id="footer" role="contentinfo">
+
+<p>IBeam Scheduler was written by <a href="http://chrisyoung.net">Christopher Young</a>.  See <a href="http://chrisyoung.net/code/projects/scheduling/">here</a> for full site credits.</p>
+
+</div> <!--End footer-->
+{% endblock footer %}
+
+
+</div> <!--End wrapper-->
+
+</body> </html>

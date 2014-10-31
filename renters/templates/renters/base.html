@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+{% block messages %}
+{% if messages %}
+<div id="message">
+<h2>Messages</h2>
+<ul class="message">
+    {% for message in messages %}
+    <li class="message">{{ message }}</li>
+    {% endfor %}
+</ul>
+</div>
+{% endif %}
+{% endblock messages %}
+
+
+{% block status %}
+{% endblock status %}
+
+
+
+
+
+
+{% block dateview %}
+
+
+{% endblock dateview %}
+
+
+{% endblock content %}

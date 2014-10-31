@@ -1,0 +1,388 @@
+body { 
+}
+
+
+/* LINKS, HEADINGS, ETC */
+
+a:link {color: #215675}
+
+a:visited {color: #215675}
+
+a:hover, a:focus, a:active {
+color: #990000;
+border-bottom: 3px solid #990000;
+}
+
+a {
+text-decoration: none; 
+outline: none;
+}
+
+img a:link, a:visited, a:hover, a:focus, a:active { 
+border-bottom: none;
+ }
+
+h2 { 
+text-align: center;
+margin-left: auto;
+margin-right: auto;
+ }
+
+
+
+/* MISC CLASSES */
+
+h3.start-end-time {
+margin-left: auto;
+margin-right: auto;
+text-align: center; 
+margin-top: 20px;
+ }
+
+
+ul.renter-time-slots-list { 
+list-style-type: square;
+ }
+
+ul.renter-time-slots-list li { 
+margin-left: 30px;
+margin-top: 10px;
+ }
+
+ul.future-time-slots li { 
+margin-top: 10px;
+margin-left: 30px;
+ }
+
+
+/* SECTIONS */
+
+#banner-pic { 
+float: left;
+ }
+
+#content { 
+clear: both;
+margin-top: 0px;
+padding-right: 20px;
+padding-left: 20px;
+margin-bottom: 30px;
+}
+
+#content h2 { 
+font-size: 1.4em;
+ }
+
+#content p {
+font-size: 1.0em;
+line-height: 1em;
+margin-top: 1em;
+ }
+
+#footer { 
+clear: both;
+height: 100px;
+margin-right: auto;
+margin-left: auto;
+text-align: center;
+font-size: 11px;
+padding-top: 60px;
+}
+
+#header { 
+height: 130px;
+width: 900px;
+}
+
+#top-right-nav { 
+float: right;
+ }
+
+#renter-tables { 
+ }
+
+#renter-tables h2 { 
+margin-top: 40px;
+margin-bottom: 40px;
+ }
+
+#wrapper { 
+font-family: Verdana, "Helvetica Neue", Helvetica, sans-serif; 
+width: 900px;
+margin-right: auto;
+margin-left: auto;
+position: relative;
+}
+
+
+
+/* MESSAGES */
+
+#message { 
+margin-top: 20px;
+margin-bottom: 20px;
+ }
+
+ul.message { 
+margin-top: 30px;
+ }
+
+li.message {
+color: red;
+ }
+
+
+/* TIMESLOTS ON THE DAY VIEW */
+
+
+#day-view-time-slots { 
+margin-top: 20px;
+width: 500px;
+float: left;
+ }
+
+
+#day-view-time-slots h2 { 
+margin-bottom: 20px;
+ }
+
+
+li.timeslot { 
+display: block;
+border: solid 1px;
+width: 500px;
+height: 250px;
+color: black;
+ }
+
+li.timeslot p { 
+margin-left: 20px;
+margin-top: 20px;
+margin-bottom: 20px;
+ }
+
+li.user-reserved {
+background: #99ccff;
+  }
+
+li.other-reserved { 
+background: #ff6666;
+
+ }
+
+li.unreserved {
+background: #99ff99;
+height: 100px;
+ }
+
+
+/* CALENDAR STUFF */
+
+#day-view-monthly-calendar {  
+float: right;
+}
+
+#month-view-container { 
+width: 600px;
+margin-left: auto;
+margin-right: auto;
+text-align: center;
+ }
+
+#month-view-month-calendar {
+margin-left: auto;
+margin-right: auto;
+text-align: center;
+ }
+
+#month-view-month-nav {
+margin-left: auto;
+margin-right: auto;
+text-align: center;
+margin-bottom: 40px;
+ }
+
+td.reserved { 
+background-color: #99ccff;
+
+ }
+
+td.today { 
+text-decoration: underline;
+ }
+
+td.reserved a { 
+color: white;
+ }
+
+.month-nav { 
+text-align: center;
+margin-left: auto;
+margin-right: auto;
+margin-top: 15px;
+margin-bottom: 20px;
+ }
+
+#nav-prev-month { 
+text-align: left;
+ }
+
+#nav-next-month { 
+text-align: right;
+ }
+
+/* ACCOUNT INFO */
+
+#status { 
+margin-top: 0px;
+margin-bottom: 30px;
+ }
+
+
+#status p { 
+margin-top: 12px;
+ }
+
+#status h2 { 
+ }
+
+ul.renter-info { 
+display: inline;
+ }
+
+ul.renter-info li { 
+display: inline;
+height: 0;
+width: 0;
+ }
+
+form.account-info { 
+margin-top: 15px;
+margin-bottom: 15px;
+ }
+
+form.account-info p {
+margin-top: 10px;
+ }
+
+
+/* OVERVIEW SECTION (WITH REPORTS, ETC) */
+
+.see-time-slot-info { 
+display: none;
+ }
+
+.close-time-slot-info-span{ 
+display: none;
+ }
+
+td.renter { 
+width: 250px;
+ }
+
+td.timeslots {
+width: 400px;
+  }
+
+#timeslot-month-detail { 
+margin-left: auto;
+margin-right: auto;
+width: 800px;
+text-align: center;
+ }
+
+#timeslot-month-detail-month-nav { 
+width: 600px;
+padding-top: 20px;
+margin-left: auto;
+margin-right: auto;
+margin-bottom: 20px;
+text-align: center;
+ }
+
+#overview-nav { 
+width: 300px;
+height: 40px;
+padding-top: 10px;
+padding-bottom: 5px;
+background-color: #e8edff;
+margin-left: auto;
+margin-right: auto;
+margin-bottom: 20px;
+text-align: center;
+ }
+
+
+table.month tr td { 
+width: 30px;
+height: 30px;
+margin-left: auto;
+margin-right: auto;
+text-align: center;
+vertical-align: middle;
+border: 1px solid white;
+ }
+
+table.month tr th { 
+height: 30px;
+ }
+
+/* Thanks for Smashing Magazine for this nice table style!
+
+http://www.smashingmagazine.com/2008/08/13/top-10-css-table-designs/
+
+*/
+
+
+.renter-overview {
+font-size: 12px;
+margin-left: auto;
+margin-right: auto;
+width: 700px;
+text-align: left;
+border-collapse: collapse;
+}
+
+.renter-overview th {
+font-size: 13px;
+font-weight: normal;
+padding: 8px;
+background: #b9c9fe;
+border-top: 4px solid #;
+border-bottom: 1px solid #fff;
+color: #039;
+}
+
+.renter-overview td {
+padding: 8px;
+background: #e8edff; 
+border-bottom: 1px solid #fff;
+color: #669;
+border-top: 1px solid transparent;
+}
+
+.renter-overview tr:hover td {
+background: #d0dafd;
+color: #339;
+}
+
+.pagination { 
+margin-top: 20px;
+text-align: center;
+margin-left: auto;
+margin-right: auto;
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

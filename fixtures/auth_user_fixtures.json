@@ -1,0 +1,38 @@
+[
+    {
+        "pk": 1, 
+        "model": "auth.user", 
+        "fields": {
+            "username": "admin", 
+            "first_name": "Chris", 
+            "last_name": "Young", 
+            "is_active": true, 
+            "is_superuser": true, 
+            "is_staff": true, 
+            "last_login": "2009-08-30 09:22:53", 
+            "groups": [], 
+            "user_permissions": [], 
+            "password": "sha1$eceed$8fb9098c90e58910541d1a45617cd17ee5f3ea4f", 
+            "email": "chris@chrisyoung.net", 
+            "date_joined": "2009-08-30 09:22:38"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "auth.user", 
+        "fields": {
+            "username": "yoon", 
+            "first_name": "Yoon", 
+            "last_name": "Choi", 
+            "is_active": true, 
+            "is_superuser": false, 
+            "is_staff": false, 
+            "last_login": "2009-08-30 09:23:41", 
+            "groups": [], 
+            "user_permissions": [], 
+            "password": "sha1$c91a8$3114e6717d94d32fff612f017f957662e3e49e5f", 
+            "email": "chris@chrisyoung.net", 
+            "date_joined": "2009-08-30 09:23:41"
+        }
+    }
+]

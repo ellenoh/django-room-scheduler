@@ -1,0 +1,63 @@
+{% extends 'overview/base.html' %}
+
+{% block subtitle %} | Overview of Timeslots for {{ this_month|date:"F Y" }} {% endblock %}
+
+{% block content %}
+
+<div id="timeslot-month-detail">
+
+<div id="timeslot-month-detail-month-nav">
+  <a href="{% url timeslot_month_detail previous_month.year, previous_month.month %}"><<< {{ previous_month|date:"F Y" }}</a> 
+  |											 
+  <a href={% url timeslot_overview %}>Timeslot Overview</a>
+  |
+  <a href="{% url timeslot_month_detail next_month.year, next_month.month %}">{{ next_month|date:"F Y" }} >>></a>
+</div>
+
+
+<h2>{{ this_month|date:"F Y" }}</h2>
+
+
+{% if timeslots_grouped_by_day %}
+
+<table class="renter-overview">
+
+  <thead>
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Timeslots For Date</th>
+    </tr>
+</thead>
+<tbody>
+{% for day in timeslots_grouped_by_day %}
+    <tr>
+  {% for timeslot in day %}
+    {% if forloop.first %}
+    <td>{{ timeslot.date|date:"F jS, Y" }}</td>
+    {% endif %}
+  {% endfor %}
+  <td>
+  {% for timeslot in day %}
+     <p><a href="/admin/timeslots/timeslot/{{ timeslot.pk }}">{{ timeslot }}</a></p>
+  {% endfor %}
+  </td>
+    </tr>
+{% endfor %}{#{% for day in timeslots_grouped_by_day %}#}
+
+</tbody>
+
+</table>
+
+
+{% else %} {#{% if timeslots_grouped_by_day %}#}
+
+
+<p>You haven't added any timeslots for this month.</p>
+
+</div><!--timeslot-month-detail-->
+
+{% endif %}
+
+
+
+{% endblock content %}

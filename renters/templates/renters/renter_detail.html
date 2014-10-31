@@ -1,0 +1,109 @@
+{% extends 'renters/base.html' %}
+{% load monthly_cal_with_reservations %}
+
+{% block subtitle %} | {{ renter }} | {{ the_date|date:"F jS Y" }}{% endblock subtitle %}
+
+{% block dateview %}
+
+
+<p>Welcome, {{ renter }}.  Your username is {{ renter.username }}</p>
+
+<p>Your account gives you {{ renter.permitted_rentals_per_month }} rental{{ renter.permitted_rentals_per_month|pluralize }} per month.</p>
+
+{% comment %}
+{% if renter.extra_credits %}
+</p>You have {{ renter.extra_credits }} extra rentals that won't expire at the end of the month.</p>
+{% endif %}
+{% endcomment %}
+
+<p>You have {{ available_credits }} rental{{ available_credits|pluralize }} left in the month of {{ the_date|date:"F" }} ({{ the_date|date:"Y" }}).</p>
+
+<div id="day-view-time-slots">
+
+
+<h2>{% if user.is_superuser %}{{ renter }} - {% endif %}{{ the_date|date:"l - F jS Y" }}</h2>
+
+
+<ul class="timeslots">
+
+{% for time_slot in time_slots %}
+
+<li class="timeslot {% if time_slot.renter %}{% ifequal time_slot.renter renter %}user-reserved {% else %}other-reserved{% endifequal %}{% else %}unreserved{% endif %}">
+
+<h3 class="start-end-time">{{ time_slot.start_time|time:"fA" }}&mdash;{{ time_slot.end_time|time:"fA" }}</h3>
+
+  {% if time_slot.show_can_unreserve_button %}
+
+      <form action="{% url unreserve_time_slot %}" method="POST">
+      <input type="hidden" name="renter_username" value="{{ renter.username }}">
+      <input type="hidden" name="time_slot_pk" value="{{ time_slot.pk  }}">
+      <input type="submit" value="Unreserve it!" />
+      </form>
+
+  {% endif %}
+
+  {% if time_slot.show_can_reserve_button %}
+
+      <form action="{% url reserve_time_slot %}" method="POST">
+      <input type="hidden" name="renter_username" value="{{ renter.username }}">
+      <input type="hidden" name="time_slot_pk" value="{{ time_slot.pk  }}">
+      <input type="submit" value="Reserve it!" />
+      </form>
+
+  {% endif %}      
+
+      {% if time_slot.renter %}
+      <p>Reserved for: {{ time_slot.renter.first_name }} {{ time_slot.renter.last_name }}</p>
+        {% if time_slot.renter.contact_info_visible %}
+            {% if time_slot.renter.email %}
+            <br/>Email: <a href="mailto:{{ time_slot.renter.email }}">{{ time_slot.renter.email }}</a>
+            {% endif %}
+            {% if time_slot.renter.mobile_phone_number %}
+            <br/>Cell: {{ time_slot.renter.mobile_phone_number }}
+            {% endif %}
+            {% if time_slot.renter.home_phone_number %}
+            <br/>Home Phone Number: {{ time_slot.renter.home_phone_number }}
+            {% endif %}
+	{% endif %}
+      {% endif %}
+
+    {% if user.is_superuser %}
+    <p><a href="/admin/timeslots/timeslot/{{ time_slot.pk }}">Edit timeslot</a></p>
+    {% endif %}
+
+
+
+    </li> <!--timeslot-->
+{% endfor %}
+
+  
+</div><!--day-view-time-slots-->
+
+
+<div id="day-view-monthly-calendar">
+
+<div class = "month-nav">
+  <a href="{% url renter_detail renter.username previous_month.year previous_month.month previous_month.day %}"><<<</a>
+</div>
+
+{% calendar_with_reservations the_date.year the_date.month renter %}
+
+<br />
+<br />
+{% calendar_with_reservations next_month.year next_month.month renter %}
+
+<br />
+<br />
+
+
+{% calendar_with_reservations next_next_month.year next_next_month.month renter %}
+
+<div class = "month-nav">
+  <a href="{% url renter_detail renter.username next_next_next_month.year next_next_next_month.month next_next_next_month.day %}">>>></a>
+</div>
+
+
+</div>
+
+{% endblock dateview %}
+

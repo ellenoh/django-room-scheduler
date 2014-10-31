@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block subtitle %} | {{ renter }} | Account {% endblock subtitle %}
+
+{% block content %}
+
+
+{% if messages %}
+<div id="message">
+<h2>Messages</h2>
+<ul class="message">
+    {% for message in messages %}
+    <li class="message">{{ message }}</li>
+    {% endfor %}
+</ul>
+</div>
+{% endif %}
+
+
+{% block status %}
+<div id="status">
+<h2>Status</h2>
+
+<p>Welcome, {{ renter }}.</p>
+
+<p>Your username is {{ renter.username }}</p>
+
+<p>Your account gives you {{ renter.permitted_rentals_per_month }} rentals per month.</p>
+
+{% comment %}
+{% if renter.extra_credits %}
+You have {{ renter.extra_credits }} extra rentals that won't expire at the end of the month.
+{% endif %}
+{% endcomment %}
+
+<p>You have {{ available_credits }} rentals left in the month of {% now "F" %} ({% now "Y" %}).</p>
+
+<p>You can export all your future reservations in the iCal format by downloading <a href="{% url renter_iCal_export renter.username %}">this file</a>.</p>
+
+{% if all_time_slots_in_future_for_renter %}
+  <p>Right now, you've got time slots booked for:
+    <ul class="renter-time-slots-list">
+      {% for time_slot in all_time_slots_in_future_for_renter %}
+      <li>{{ time_slot.start_time|time:"fA" }}&mdash;{{ time_slot.end_time|time:"fA" }} on <a href="{% url renter_detail renter.username, time_slot.date.year, time_slot.date.month, time_slot.date.day %}">{{ time_slot.date|date:"F jS, Y" }}</a></li>
+      {% endfor %}
+    </ul>
+  </p>
+{% endif %}
+
+<p>Your account expires on {{ renter.account_expires|date:"F jS, Y" }}.  You can only view rental information between now and when your account expires.</p>
+
+</div><!--status -->
+{% endblock status %}
+
+<h2>Account Settings and Information</h2>
+
+<br />
+<br />
+
+<form class="account-info" action="{% url renter_account renter.username %}" method="POST">
+{{ form.as_p }}
+<input type="submit" value="Submit" />
+</form>
+
+
+{% if rental_history %}
+<h2>Rental History</h2>
+<br />
+<br />
+  <p>Here are all your past rentals:
+    <ul class="renter-time-slots-list">
+      {% for time_slot in rental_history %}
+      <li>{{ time_slot.start_time|time:"fA" }}&mdash;{{ time_slot.end_time|time:"fA" }} on <a href="{% url renter_detail renter.username, time_slot.date.year, time_slot.date.month, time_slot.date.day %}">{{ time_slot.date|date:"F jS, Y" }}</a></li>
+      {% endfor %}
+    </ul>
+  </p>
+{% endif %}
+
+{% endblock content %}

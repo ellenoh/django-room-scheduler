@@ -1,0 +1,82 @@
+{% extends 'overview/base.html' %}
+
+{% block subtitle %} | Activity{% endblock %}
+
+{% block content %}
+
+{% if history %}
+
+<h2>History</h2>
+
+<p>Click <a href="{% url export_to_csv %}">here</a> to export the entire rental history to csv.</p>
+
+
+<div class="pagination">
+        {% if history.has_previous %}
+            <a href="?page={{ history.previous_page_number }}"><<<</a> 
+        {% endif %}
+	
+            Page {{ history.number }} of {{ history.paginator.num_pages }}
+	
+        {% if history.has_next %}
+            <a href="?page={{ history.next_page_number }}">>>></a>
+        {% endif %}
+
+	<br />
+	<br />
+
+</div>
+
+<table class="renter-overview">
+
+  <thead>
+    <tr>
+      <th scope="col">For Whom</th>
+      <th scope="col">By Whom</th>
+      <th scope="col">When</th>
+      <th scope="col">What</th>
+      <th scope="col">Delete Record</th>
+    </tr>
+</thead>
+  <tbody>
+    {% for record in history.object_list %}
+    <tr>
+      <td><a href="{{ record.saved_for.get_absolute_url }}">{{ record.saved_for.full_name }}</a></td>
+      <td><a href="{{ record.saver.get_absolute_url }}">{{ record.saver.full_name }}</a></td>
+      <td>{{ record.datetime_of_change|time:"fA" }} on {{ record.datetime_of_change|date:"F jS, Y" }}</td>
+      <td>{% if record.reserved %}Reserved{% else %}Unreserved {% endif %}  
+	<a href="{% url renter_detail record.saved_for.username, record.time_slot.date.year, record.time_slot.date.month, record.time_slot.date.day %}">{{ record.time_slot.start_time|time:"fA" }}&mdash;{{ record.time_slot.end_time|time:"fA" }} on {{ record.time_slot.date|date:"F jS, Y" }}</a></td>
+      <td>      
+	<form action="{% url delete_rental_history_record %}" method="POST">
+        <input type="hidden" name="rental_history_record_pk" value="{{ record.pk }}">
+        <input type="submit" value="Delete record" />
+        </form>
+      </td>
+     </tr>
+      {% endfor %}
+    </tbody>
+</table>
+
+<div class="pagination">
+        {% if history.has_previous %}
+            <a href="?page={{ history.previous_page_number }}"><<<</a> 
+        {% endif %}
+	
+            Page {{ history.number }} of {{ history.paginator.num_pages }}
+	
+        {% if history.has_next %}
+            <a href="?page={{ history.next_page_number }}">>>></a>
+        {% endif %}
+
+	<br />
+	<br />
+
+	{% for i in history.paginator.page_range %}
+	<a href="?page={{ i }}">{{ i }}</a>
+	{% endfor %}
+
+</div>
+
+{% endif %}
+
+{% endblock content %}

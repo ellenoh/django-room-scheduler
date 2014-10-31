@@ -1,0 +1,40 @@
+[
+    {
+        "pk": 2, 
+        "model": "renters.renter", 
+        "fields": {
+            "contact_info_visible": true, 
+            "first_name": "Yoon", 
+            "last_name": "Choi", 
+            "home_phone_number": "", 
+            "mobile_phone_number": "917-613-4384", 
+            "account_expires": "2009-09-23", 
+            "can_see_days_ahead": 60, 
+            "flexible_renter": true, 
+            "user": 2, 
+            "email_notifications": false, 
+            "permitted_rentals_per_month": 4, 
+            "extra_credits": 0, 
+            "email": "chris@chrisyoung.net"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "renters.renter", 
+        "fields": {
+            "contact_info_visible": true, 
+            "first_name": "Chris", 
+            "last_name": "Young", 
+            "home_phone_number": "", 
+            "mobile_phone_number": "", 
+            "account_expires": "2009-09-30", 
+            "can_see_days_ahead": 60, 
+            "flexible_renter": true, 
+            "user": 1, 
+            "email_notifications": false, 
+            "permitted_rentals_per_month": 8, 
+            "extra_credits": 2, 
+            "email": "chris@chrisyoung.net"
+        }
+    }
+]

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load markup %}
+
+{% block subtitle %} | {{ flatpage.title }}{% endblock subtitle %}
+
+{% block content %}
+
+<h2>{{ flatpage.title }}</h2>
+
+<br />
+<br />
+{{ flatpage.content|markdown }}
+
+
+
+{% endblock content %}

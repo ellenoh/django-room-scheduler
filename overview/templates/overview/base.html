@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block overview_nav %}
+<div id="overview-nav">
+
+<a href="{% url overview_index %}">Renters</a>
+|
+<a href="{% url timeslot_overview %}">Timeslots</a>
+|
+<a href="{% url history %}">History</a>
+
+</div>
+{% endblock overview_nav %}
+

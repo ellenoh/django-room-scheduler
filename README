@@ -1,0 +1,47 @@
+The MIT License
+
+Copyright (c) 2009 Christopher Young (chrisyoung.net)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+
+This is a simple room scheduling application which I wrote for a music
+teaching and performance space in Brooklyn.  Notice that it's a "room"
+scheduling application, and not a "rooms" scheduling application.
+There's only one room, and the system is only set up to handle this
+one simple case.
+
+The teaching space's needs are fairly specific, so there's limited
+value in open sourcing this application.  I'm doing it anyway, in case
+it's of use to anyone building something similar.  Of course, I'd be
+delighted if anyone was able to use it without much modification; but
+I'd be happy enough if it saves someone a few hours.  That said, do
+note that it's a bit rough around the edges in places.
+
+This project has very few dependencies.  It works on Django 1.1---not
+sure about other versions.  And it requires markdown.  
+
+TODO
+
+A lot!  But most important:
+
+-Better and more comprehensive test suite.  Services added to the
+-Overview section of the site to add repeating time slots and
+-repeating reservations.
+

@@ -1,0 +1,149 @@
+{% extends 'overview/base.html' %}
+
+{% block subtitle %} | Overview {% endblock subtitle %}
+
+{% block script %}
+
+{{ block.super }}
+
+<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-1.3.2.min.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+  $(".see-time-slot-info").show();
+
+  $(".time-slot-info").hide();
+
+  $(".open-close-time-slot-info").click(function (e) {
+   e.preventDefault();
+   $(this).parent().parent().find(".time-slot-info").toggle();
+  });
+});
+
+      
+</script>
+
+
+
+{% endblock script %}
+
+
+{% block content %}
+
+<div id="renter-tables">
+
+
+{% if active_flexible_renters %}
+
+<h2>Active Flexible Renters</h2>
+
+<table class="renter-overview">
+
+  <thead>
+    <tr>
+      <th scope="col">Renter</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Current Reservations</th>
+    </tr>
+</thead>
+  <tbody>
+    {% for renter in active_flexible_renters %}
+    <tr>
+      <td class="renter"><a href="{{ renter.get_absolute_url }}">{{ renter }}</a></td>
+      <td class="link"><a href="{{ renter.get_edit_page }}">link</a></td>      
+      <td class="timeslots">
+	{% if renter.future_time_slots %}
+	<span class="see-time-slot-info">
+	  <a href="" class="open-close-time-slot-info">(Open/Close)</a>
+	</span>
+	<span class="time-slot-info">
+	  {% for time_slot in renter.future_time_slots %}	    
+	  <p>{{ time_slot.start_time|time:"fA" }}&mdash;{{ time_slot.end_time|time:"fA" }} on <a href="{% url renter_detail renter.username, time_slot.date.year, time_slot.date.month, time_slot.date.day %}">{{ time_slot.date|date:"F jS, Y" }}</a> 
+	    {% if time_slot.can_be_changed_by_renter %}
+	    (Flexible)
+	    {% else %}
+	    (Fixed)
+	    {% endif %}
+	  </p>
+	  {% endfor %}
+	 </span>
+	{% endif %}
+      </td>
+    </tr>
+      {% endfor %}
+    </tbody>
+</table>
+
+{% endif %}
+
+{% if active_fixed_renters %}
+
+<h2>Active Fixed Renters</h2>
+
+<table class="renter-overview">
+
+  <thead>
+    <tr>
+      <th scope="col">Renter</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Current Reservations</th>
+    </tr>
+</thead>
+  <tbody>
+    {% for renter in active_fixed_renters %}
+    <tr>
+      <td class="renter"><a href="{{ renter.get_absolute_url }}">{{ renter }}</a></td>
+      <td class="link"><a href="{{ renter.get_edit_page }}">link</a></td>      
+      <td class="timeslot">
+	{% if renter.future_time_slots %}
+	<span class="see-time-slot-info">
+	  <a href="" class="open-close-time-slot-info">(Open/Close)</a>
+	</span>
+
+	<span class="time-slot-info">
+	  {% for time_slot in renter.future_time_slots %}
+	  <p>{{ time_slot.start_time|time:"fA" }}&mdash;{{ time_slot.end_time|time:"fA" }} on <a href="{% url renter_detail renter.username, time_slot.date.year, time_slot.date.month, time_slot.date.day %}">{{ time_slot.date|date:"F jS, Y" }}</a></p>
+	  {% endfor %}
+	</span>
+	{% endif %}
+      </td>
+    </tr>
+      {% endfor %}
+    </tbody>
+</table>
+
+{% endif %}
+
+{% if inactive_renters %}
+
+<br />
+<br />
+<h2>Inactive Renters</h2>
+
+<table class="renter-overview">
+
+  <thead>
+    <tr>
+      <th scope="col">Renter Name</th>
+      <th scope="col">Account Expired</th>
+      <th scope="col">Page</th>
+    </tr>
+</thead>
+  <tbody>
+    {% for renter in inactive_renters %}
+    <tr>
+      <td class="renter"><a href="{{ renter.get_absolute_url }}">{{ renter }}</a></td>
+      <td>{{ renter.account_expires }}</td>
+      <td><a href="{{ renter.get_edit_page }}">link</a></td>      
+      {% endfor %}
+    </tr>
+    </tbody>
+</table>
+
+{% endif %}
+
+</div><!--renter-tables-->
+
+{% endblock content %}
